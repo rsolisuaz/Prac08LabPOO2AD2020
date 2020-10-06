@@ -1,0 +1,38 @@
+plugins {
+    id 'java'
+}
+
+group 'mx.edu.uaz.ingsoftware.poo2'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        events 'PASSED', 'FAILED', 'SKIPPED'
+    }
+    afterSuite { desc, result ->
+        if (!desc.parent) {
+            println "\nResultados de Prueba: ${result.resultType}"
+            println "Resumen de prueba: ${result.testCount} pruebas, " +
+                    "${result.successfulTestCount} exitosas, " +
+                    "${result.failedTestCount} fallidas, " +
+                    "${result.skippedTestCount} omitidas"
+        }
+    }
+}
+
+dependencies {
+    // MySQL Driver
+    implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.21'
+    implementation group: "org.dbunit", name: "dbunit", version: "2.7.0"
+    runtimeOnly "mysql:mysql-connector-java:8.0.21"
+    runtimeOnly "org.dbunit:dbunit:2.7.0"
+
+    implementation 'org.junit.jupiter:junit-jupiter:5.4.2'
+    testImplementation group: "org.dbunit", name: "dbunit", version: "2.7.0"
+    testImplementation group: 'junit', name: 'junit', version: '4.12'
+}
