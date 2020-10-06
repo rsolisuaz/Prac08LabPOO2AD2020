@@ -54,7 +54,6 @@ public class DBTest extends TestCase {
 
     @BeforeAll
     public static void inicializa() throws Exception {
-        System.out.println("Setup..");
         iniciaDatosLista();
         databaseTester=new JdbcDatabaseTester(driverName,url,
                 "IngSW","UAZsw2020");
@@ -62,8 +61,6 @@ public class DBTest extends TestCase {
         conndbunit=databaseTester.getConnection();
         DatabaseConfig config=conndbunit.getConfig();
         config.setProperty(DatabaseConfig.FEATURE_ALLOW_EMPTY_FIELDS,true);
-        System.out.println(config.getProperty(DatabaseConfig.FEATURE_ALLOW_EMPTY_FIELDS));
-        //databaseTester=new JdbcDatabaseTester(driverName,url);
         IDataSet dataSet=new FlatXmlDataSetBuilder().build(new FileInputStream("concursos.xml"));
         databaseTester.setDataSet(dataSet);
         databaseTester.setSetUpOperation(DatabaseOperation.CLEAN_INSERT);
@@ -72,7 +69,6 @@ public class DBTest extends TestCase {
 
     @AfterAll
     public static void termina() throws Exception {
-        System.out.println("Teardown..");
         databaseTester.setTearDownOperation(DatabaseOperation.REFRESH);
         databaseTester.onTearDown();
         System.out.printf("Calificacion:%d/%d\n",calificacion,MAX_CALIF);
@@ -271,8 +267,6 @@ public class DBTest extends TestCase {
     @Test
     @Order(8)
     public void testUpdateInstValida() throws Exception {
-        System.out.println("Entra a testUpdate");
-
         long id=5;
         String nom="Universidad Tecnologica de Aguascalientes";
         String nomcorto="UTAGS";
@@ -305,8 +299,6 @@ public class DBTest extends TestCase {
     @Test
     @Order(9)
     public void testUpdateInstInexistente() throws Exception {
-        System.out.println("Entra a testUpdateInexistente");
-
         long id=16;
         String nom="Universidad Tecnologica de Aguascalientes";
         String nomcorto="UTAGS";
@@ -338,8 +330,6 @@ public class DBTest extends TestCase {
     @Test
     @Order(10)
     public void testUpdateInstInvalida() throws Exception {
-        System.out.println("Entra a testUpdateInvalida");
-
         long id=5;
         String nom="Universidad Con un Nombre Extremadamente Largo para el Limite que tiene el campo y que por tanto no deberia de pasar Tecnologica Estado de Zacatecas";
         String nomcorto="UniversidadTecnologicadelEstadodeZacatecas";
