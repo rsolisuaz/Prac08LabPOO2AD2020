@@ -103,6 +103,10 @@ public class DBTest extends TestCase {
         assertEquals(codpostal, inst_agregar.getCodpostalInstitucion());
         assertEquals(tel, inst_agregar.getTelefonoInstitucion());
         assertEquals(nom, inst_agregar.toString());
+        Institucion otra=new Institucion(id);
+        assertTrue(inst_agregar.equals(otra));
+        otra=new Institucion(id+1);
+        assertFalse(inst_agregar.equals(otra));
         calificacion += CALIF_CLASE_ENTIDAD;
     }
 
