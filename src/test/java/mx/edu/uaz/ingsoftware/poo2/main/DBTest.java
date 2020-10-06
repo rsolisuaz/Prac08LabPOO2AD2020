@@ -104,9 +104,12 @@ public class DBTest extends TestCase {
         assertEquals(tel, inst_agregar.getTelefonoInstitucion());
         assertEquals(nom, inst_agregar.toString());
         Institucion otra=new Institucion(id);
-        assertTrue(inst_agregar.equals(otra));
-        otra=new Institucion(id+1);
+        assertTrue("Deberia comparar dos objetos en base a idInstitucion", inst_agregar.equals(otra));
+        otra=new Institucion();
+        otra.setIdInstitucion(id+1);
         assertFalse(inst_agregar.equals(otra));
+        boolean esSerializable=inst_agregar instanceof Serializable;
+        assertTrue("Deberia implementar Serializable",esSerializable);
         calificacion += CALIF_CLASE_ENTIDAD;
     }
 
