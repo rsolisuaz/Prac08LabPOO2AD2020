@@ -38,7 +38,7 @@ Para ejecutar las pruebas de tu programa selecciona **DBTest** dentro de src/tes
    - otro que reciba como argumentos la ubicacion del servidor, nombre de la base de datos a usar, usuario y clave con el que se conectará (todos String) y a partir de ellos crear la conexión ayudándose de DriverManager
    - otro que reciba como argumento el objeto Connection a usar, en cuyo caso simplemente lo asigna a su atributo Connection
 
-2. En cada uno de los métodos de la interface DAO<T> que implementarás para la tabla institucion, debes capturar las posibles excepciones que se den al conectarse a MySQL y en su lugar emitirás una excepción de tipo DaoException con los mismos mensajes y causas que la excepción original, esto para que en caso de que quien use la clase tenga la opción de determinar las causas del error.
+2. En cada uno de los métodos y constructores de las interfaces DAO<T> y DAOConcurso que implementarás para la tabla institucion, debes capturar las posibles excepciones que se den al conectarse a MySQL (si que aplica) y en su lugar emitirás una excepción de tipo DaoException con los mismos mensajes y causas que la excepción original, esto para que en caso de que quien use la clase tenga la opción de determinar las causas del error.
 
 3. La clase que implemente DAOConcursos debe apoyarse en las clases que implementen DAO<T> para realizar su trabajo, por lo cual deberá contener objetos de tales clases los cuales serán inicializados al construirse el objeto.
 
