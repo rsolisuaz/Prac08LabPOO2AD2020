@@ -25,12 +25,13 @@ public class DBTest extends TestCase {
     private final static String url="jdbc:mysql://localhost/controlconcursos";
     private static List<Institucion> datosEsperados;
     private static IDatabaseConnection conndbunit;
-    private static double calificacion;
-    private final static double CALIF_CLASE_ENTIDAD=10;
-    private final static double CALIF_OBTENER=7.5;
-    private final static double CALIF_AGREGAR=7.5;
-    private final static double CALIF_UPDATE=7.5;
-    private final static double CALIF_DELETE=7.5;
+    private static int calificacion;
+    private final static int CALIF_CLASE_ENTIDAD=5;
+    private final static int CALIF_OBTENER=5;
+    private final static int CALIF_AGREGAR=10;
+    private final static int CALIF_UPDATE=10;
+    private final static int CALIF_DELETE=5;
+    private final static int MAX_CALIF=100;
 
     private static void iniciaDatosLista() throws Exception {
         BufferedReader in = new BufferedReader(
@@ -74,7 +75,7 @@ public class DBTest extends TestCase {
         System.out.println("Teardown..");
         databaseTester.setTearDownOperation(DatabaseOperation.REFRESH);
         databaseTester.onTearDown();
-        System.out.printf("Calificacion:%.2f/%.2f\n",calificacion,100.0);
+        System.out.printf("Calificacion:%d/%d\n",calificacion,MAX_CALIF);
     }
 
     @Test
@@ -163,7 +164,7 @@ public class DBTest extends TestCase {
         for (int i=0; i<actual.size(); i++) {
             comparaInst(datosEsperados.get(i), actual.get(i));
         }
-        calificacion += CALIF_OBTENER;
+        calificacion += CALIF_OBTENER*2;
     }
 
     @Test
